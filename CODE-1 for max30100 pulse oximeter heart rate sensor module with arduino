@@ -1,0 +1,18 @@
+#include "MAX30100.h"
+
+MAX30100 pulseOximeter;
+
+void setup() {
+  Serial.begin(9600);
+
+  pulseOximeter.begin();
+}
+
+void loop() {
+  if (pulseOximeter.available()) {
+    PulseOximeterReading reading = pulseOximeter.read();
+
+    Serial.print("Heart rate: ");
+    Serial.println(reading.heartRate);
+  }
+}
